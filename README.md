@@ -11,7 +11,7 @@
 
 1. Klonowanie repozytorium:
 ```bash
-git clone git@github.com:pioi43/laravel-docker-dev.git
+git clone git@github.com:pio43/laravel-docker-dev.git
 cd laravel-docker-dev
 ```
 
