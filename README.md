@@ -2,52 +2,59 @@
 
 # Laravel Docker Development Environment
 
-Ten projekt ma na celu stworzenie środowiska deweloperskiego dla aplikacji Laravel przy użyciu Dockera. Poniżej znajdują się instrukcje dotyczące uruchamiania i konfigurowania środowiska.
-
-## Wymagania
-
+## 🛠 Wymagania
 - Docker
 - Docker Compose
+- Git
 
-## Struktura projektu
+## 🚀 Instalacja
 
-```
-laravel-docker-dev
-├── docker
-│   ├── nginx
-│   │   └── default.conf
-│   └── php
-│       └── Dockerfile
-├── src
-│   └── .gitkeep
-├── .env.example
-├── .gitignore
-├── docker-compose.yml
-├── composer.json
-└── README.md
-```
-
-## Uruchamianie projektu
-
-1. Skopiuj plik `.env.example` do `.env` i dostosuj zmienne środowiskowe według potrzeb.
-2. Uruchom polecenie:
-
-   ```bash
-   docker-compose up -d
-   ```
-
-3. Otwórz przeglądarkę i przejdź do `http://localhost`.
-
-## Edytowanie plików
-
-Pliki źródłowe aplikacji Laravel znajdują się w katalogu `src`. Możesz edytować je lokalnie, a zmiany będą automatycznie odzwierciedlane w kontenerze.
-
-## Zakończenie
-
-Aby zatrzymać kontenery, użyj polecenia:
-
+1. Klonowanie repozytorium:
 ```bash
-docker-compose down
+git clone git@github.com:pioi43/laravel-docker-dev.git
+cd laravel-docker-dev
 ```
 
-Dzięki temu środowisko deweloperskie Laravel będzie łatwe do uruchomienia i zarządzania przy użyciu Dockera.
+2. Uruchomienie środowiska:
+```bash
+docker-compose up -d
+```
+
+3. Instalacja zależności:
+```bash
+docker-compose exec php composer install
+```
+
+4. Konfiguracja:
+```bash
+cp src/.env.example src/.env
+docker-compose exec php php artisan key:generate
+```
+
+## 📦 Struktura projektu
+```
+laravel-docker-dev/
+├── docker/
+│   ├── nginx/
+│   │   └── default.conf
+│   └── php/
+│       └── Dockerfile
+├── src/
+│   └── (pliki Laravel)
+└── docker-compose.yml
+```
+
+## 🔧 Komendy
+- Start: `docker-compose up -d`
+- Stop: `docker-compose down`
+- Logi: `docker-compose logs`
+- Artisan: `docker-compose exec php php artisan`
+
+## 🔗 Dostęp
+- Frontend: http://localhost:8080
+- MySQL:
+  - Host: localhost
+  - Port: 3306
+  - Baza: laravel
+  - User: laravel
+  - Hasło: secret
